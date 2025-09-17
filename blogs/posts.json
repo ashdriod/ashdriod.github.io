@@ -1,0 +1,22 @@
+[
+    {
+      "slug": "hello-world",
+      "title": "Hello World — Why I’m Building This",
+      "date": "2025-09-16",
+      "displayDate": "Sep 16, 2025",
+      "category": "Personal",
+      "excerpt": "What I’ll write here: ML at the edge, app performance, and study notes…",
+      "image": "./assets/images/blog-1.jpg",
+      "alt": "Hello World cover"
+    },
+    {
+      "slug": "edge-vs-server",
+      "title": "Edge vs Server Inference: First Measurements",
+      "date": "2025-09-10",
+      "displayDate": "Sep 10, 2025",
+      "category": "ML Notes",
+      "excerpt": "Latency, energy, and UX trade-offs from my cognitive load project—early results and plots.",
+      "image": "./assets/images/blog-2.jpg",
+      "alt": "Edge vs Server"
+    }
+  ]

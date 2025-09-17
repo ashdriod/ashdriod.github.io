@@ -1879,5 +1879,70 @@ textarea.form-input::-webkit-resizer { display: none; }
 	 */
 
   .timeline-text { max-width: 700px; }
+}
 
+  /* === BLOG POST EXTRAS (mobile-first, always on) === */
+.post-underline {
+  width: 40px;
+  height: 3px;
+  background: var(--text-gradient-yellow);
+  border-radius: 3px;
+  margin-top: .4rem;
+}
+
+.post-subtitle {
+  color: var(--orange-yellow-crayola);
+  font-weight: var(--fw-600);
+  font-size: var(--fs-3);
+  line-height: 1.3;
+  margin-top: 1.1rem;
+}
+
+/* slightly larger underline on wider screens */
+@media (min-width: 580px) {
+  .post-underline { width: 56px; height: 5px; }
+}
+
+/* === SIDEBAR: Expanded by default, button visible everywhere === */
+/* override earlier base + ≥1250px rules */
+.info_more-btn { 
+  display: block !important;     /* was hidden at ≥1250px */
+}
+
+.sidebar {
+  max-height: none !important;   /* expanded */
+  overflow: visible !important;
+  transition: var(--transition-2);
+}
+
+.sidebar.active {                 /* neutralize template's 'active' expander */
+  max-height: none !important;
+}
+
+.sidebar-info_more {
+  opacity: 1 !important;
+  visibility: visible !important;
+  max-height: none !important;
+  transition: var(--transition-2);
+}
+
+/* Optional collapse state (use later if your JS adds .collapsed) */
+.sidebar.collapsed {
+  max-height: 112px !important;
+  overflow: hidden !important;
+}
+.sidebar.collapsed .sidebar-info_more {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  max-height: 0 !important;
+}
+
+/* Chevron orientation + label feel (icon rotates) */
+.sidebar:not(.collapsed) .info_more-btn ion-icon {
+  transform: rotate(180deg);
+  transition: transform var(--transition-1);
+}
+.sidebar.collapsed .info_more-btn ion-icon {
+  transform: rotate(0deg);
+  transition: transform var(--transition-1);
 }
