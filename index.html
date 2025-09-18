@@ -935,7 +935,8 @@
         <header>
           <h2 class="h2 article-title">Contact</h2>
         </header>
-
+      
+        <!-- Map -->
         <section class="mapbox" data-mapbox>
           <figure>
             <iframe
@@ -949,30 +950,65 @@
             </iframe>
           </figure>
         </section>
-
+      
+        <!-- Contact Form -->
         <section class="contact-form">
-
           <h3 class="h3 form-title">Contact Form</h3>
-
-          <form action="#" class="form" data-form>
-
+        
+          <form action="https://formspree.io/f/xjkenkrg" method="POST" class="form" id="contactForm" novalidate>
             <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+              <div class="field">
+                <input
+                  type="text"
+                  name="fullname"
+                  class="form-input"
+                  placeholder="Full name"
+                  required
+                  aria-required="true"
+                  autocomplete="name"
+                >
+                <span class="error-text" aria-live="polite"></span>
+              </div>
+        
+              <div class="field">
+                <input
+                  type="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Email address"
+                  required
+                  aria-required="true"
+                  inputmode="email"
+                  autocomplete="email"
+                >
+                <span class="error-text" aria-live="polite"></span>
+              </div>
             </div>
-
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-
-            <button class="form-btn" type="submit" disabled data-form-btn>
+        
+            <div class="field">
+              <textarea
+                name="message"
+                class="form-input"
+                placeholder="Your Message"
+                required
+                aria-required="true"
+                rows="5"
+              ></textarea>
+              <span class="error-text" aria-live="polite"></span>
+            </div>
+        
+            <input type="hidden" name="_subject" value="New Portfolio Contact">
+        
+            <button class="form-btn" type="submit" id="contactSubmit" disabled>
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
             </button>
-
+        
+            <!-- Success / error notice (inline, optional) -->
+            <p class="form-note" id="formNote" hidden></p>
           </form>
-
         </section>
-
+      
       </article>
 
     </div>

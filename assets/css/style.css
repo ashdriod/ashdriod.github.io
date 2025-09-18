@@ -1881,7 +1881,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   .timeline-text { max-width: 700px; }
 }
 
-  /* === BLOG POST EXTRAS (mobile-first, always on) === */
+  /* === BLOG POST EXTRAS (mobile-first) === */
 .post-underline {
   width: 40px;
   height: 3px;
@@ -1889,7 +1889,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   border-radius: 3px;
   margin-top: .4rem;
 }
-
 .post-subtitle {
   color: var(--orange-yellow-crayola);
   font-weight: var(--fw-600);
@@ -1897,52 +1896,104 @@ textarea.form-input::-webkit-resizer { display: none; }
   line-height: 1.3;
   margin-top: 1.1rem;
 }
-
-/* slightly larger underline on wider screens */
 @media (min-width: 580px) {
   .post-underline { width: 56px; height: 5px; }
 }
 
-/* === SIDEBAR: Expanded by default, button visible everywhere === */
-/* override earlier base + ≥1250px rules */
-.info_more-btn { 
-  display: block !important;     /* was hidden at ≥1250px */
+/* =========================================================
+   SIDEBAR TOGGLE RULES (final authority at bottom of file)
+   - < 1250px: button visible, sidebar expanded by default,
+               can collapse with `.collapsed` (JS toggles it)
+   - ≥ 1250px: button hidden, sidebar always expanded
+   ========================================================= */
+
+/* Small & medium screens: show the button, expanded by default */
+@media (max-width: 1249px) {
+  .info_more-btn { 
+    display: block;                  /* visible on mobile/tablet */
+  }
+
+  /* Expanded by default */
+  .sidebar {
+    max-height: none;
+    overflow: visible;
+    transition: var(--transition-2);
+  }
+  .sidebar-info_more {
+    opacity: 1;
+    visibility: visible;
+    max-height: none;
+    transition: var(--transition-2);
+  }
+
+  /* Optional collapsed state (when JS toggles .collapsed) */
+  .sidebar.collapsed {
+    max-height: 112px;
+    overflow: hidden;
+  }
+  .sidebar.collapsed .sidebar-info_more {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+  }
+
+  /* Neutralize any legacy 'active' expander on small screens */
+  .sidebar.active { max-height: none; }
+  .sidebar.active .sidebar-info_more {
+    opacity: 1; visibility: visible; max-height: none;
+  }
+
+  /* Chevron orientation */
+  .sidebar:not(.collapsed) .info_more-btn ion-icon {
+    transform: rotate(180deg);
+    transition: transform var(--transition-1);
+  }
+  .sidebar.collapsed .info_more-btn ion-icon {
+    transform: rotate(0deg);
+    transition: transform var(--transition-1);
+  }
 }
 
-.sidebar {
-  max-height: none !important;   /* expanded */
-  overflow: visible !important;
-  transition: var(--transition-2);
+/* Desktop: hide the button, keep contacts always visible */
+@media (min-width: 1250px) {
+  .info_more-btn { 
+    display: none !important;        /* hide on full screen */
+  }
+  .sidebar,
+  .sidebar.active,
+  .sidebar.collapsed {               /* force expanded at desktop */
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .sidebar-info_more,
+  .sidebar.active .sidebar-info_more,
+  .sidebar.collapsed .sidebar-info_more {
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-height: none !important;
+  }
 }
 
-.sidebar.active {                 /* neutralize template's 'active' expander */
-  max-height: none !important;
+/* Inline validation styles */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.error-text {
+  color: var(--bittersweet-shimmer);
+  font-size: var(--fs-8);
+  line-height: 1.2;
+  min-height: 1em; /* keeps layout steady even when empty */
 }
 
-.sidebar-info_more {
-  opacity: 1 !important;
-  visibility: visible !important;
-  max-height: none !important;
-  transition: var(--transition-2);
+.form-input.invalid {
+  border-color: var(--bittersweet-shimmer);
 }
 
-/* Optional collapse state (use later if your JS adds .collapsed) */
-.sidebar.collapsed {
-  max-height: 112px !important;
-  overflow: hidden !important;
-}
-.sidebar.collapsed .sidebar-info_more {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  max-height: 0 !important;
+.form-input.valid {
+  border-color: var(--orange-yellow-crayola);
 }
 
-/* Chevron orientation + label feel (icon rotates) */
-.sidebar:not(.collapsed) .info_more-btn ion-icon {
-  transform: rotate(180deg);
-  transition: transform var(--transition-1);
-}
-.sidebar.collapsed .info_more-btn ion-icon {
-  transform: rotate(0deg);
-  transition: transform var(--transition-1);
+/* Optional: message below the button */
+.form-note {
+  margin-top: 12px;
+  font-size: var(--fs-7);
+  color: var(--light-gray);
 }
