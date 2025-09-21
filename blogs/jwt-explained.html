@@ -1,0 +1,62 @@
+<header>
+    <!-- Main post title uses your .h3 -->
+    <h3 class="h3">Understanding JSON Web Tokens (JWT) with a Simple Example</h3>
+  
+    <!-- short red underline -->
+    <div class="post-underline"></div>
+  
+    <div class="blog-meta" style="margin-top:.4rem;">
+      <p class="blog-category">Security Notes</p>
+      <span class="dot"></span>
+      <time datetime="2025-09-21">Sep 21, 2025</time>
+    </div>
+  </header>
+  
+  <figure class="blog-banner-box" style="margin:1rem 0;">
+    <img src="./assets/images/blog1.png" alt="JWT Example" loading="lazy">
+  </figure>
+  
+  <div style="line-height:1.8;">
+    <p class="timeline-text">
+      When I first looked into <strong>JSON Web Tokens (JWT)</strong>, my reaction was:
+      <em>this is just a string with dots — how can it secure anything?</em> The trick is how
+      that string is constructed: a <strong>header</strong>, a <strong>payload</strong>, and a
+      <strong>signature</strong>, Base64URL-encoded and joined with periods.
+    </p>
+  
+    <p class="timeline-text">
+      The header declares the algorithm and type, e.g. <code>{"alg":"HS256","typ":"JWT"}</code>.
+      The payload carries claims (like who you are and your role), e.g. <code>{"user":"alice","role":"admin"}</code>.
+      Both are encoded, then the server creates a signature with its secret key to prevent tampering.
+    </p>
+  
+    <p class="timeline-text"><strong>Step 1 — Defining the parts</strong></p>
+    <pre><code>{
+  "header":  {"alg":"HS256","typ":"JWT"},
+  "payload": {"user":"alice","role":"admin"}
+  }</code></pre>
+  
+    <p class="timeline-text"><strong>Step 2 — Encoding the parts</strong></p>
+    <pre><code>base64url(header)  = eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9&#10;base64url(payload) = eyJ1c2VyIjogImFsaWNlIiwgInJvbGUiOiAiYWRtaW4ifQ
+    </code></pre>
+  
+    <p class="timeline-text"><strong>Step 3 — Creating the signature</strong></p>
+    <pre><code>signature = HMACSHA256( header + "." + payload, &lt;server-secret&gt; )</code></pre>
+  
+    <p class="timeline-text"><strong>Step 4 — The final JWT</strong></p>
+    <pre><code>eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9&#10;eyJ1c2VyIjogImFsaWNlIiwgInJvbGUiOiAiYWRtaW4ifQ&#10;p4l2jMZr7vP5Zp5yGk6czhZW3fWfGgvAxQs0LwC9ZtU</code></pre>
+  
+    <p class="timeline-text">
+      The important part is the signature: it’s created using a secret key known only to the server. 
+      Anyone can decode the first two parts and read the claims, but without the secret they cannot 
+      generate a valid signature. That’s why JWTs rely on strong, random secrets — brute forcing 
+      a long, random key is simply impractical.
+    </p>
+  
+    <p class="timeline-text">
+      To make it less abstract, think of JWTs like an airline boarding pass. The <em>header</em> is the format, 
+      the <em>payload</em> says who you are and where you’re headed, and the <em>signature</em> is the official 
+      stamp from the airline. Anyone can read your name and flight info, but only the airline can issue the stamp. 
+      Without it, you’re not getting past the gate.
+    </p>
+  </div>

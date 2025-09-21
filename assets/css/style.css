@@ -828,6 +828,7 @@ main {
   color: var(--light-gray);
   font-weight: var(--fw-300);
   line-height: 1.6;
+  margin-bottom: 1rem; /* add vertical spacing */
 }
 
 
@@ -1996,4 +1997,95 @@ textarea.form-input::-webkit-resizer { display: none; }
   margin-top: 12px;
   font-size: var(--fs-7);
   color: var(--light-gray);
+}
+
+/* === Monospace font token === */
+:root {
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* === Inline code chips (p/li/dd/td) === */
+p > code,
+li > code,
+dd > code,
+td > code {
+  font-family: var(--mono);
+  font-size: 0.95em;
+  background: hsla(0, 84%, 60%, 0.12);      /* red tint */
+  border: 1px solid hsla(0, 84%, 60%, 0.28);
+  padding: .12rem .35rem .2rem;
+  border-radius: .25rem;
+  word-wrap: break-word;
+  box-decoration-break: clone;
+}
+
+/* === Code blocks: <pre><code> and .code-block > pre  ===
+   (shared block styling; one place to tweak) */
+pre,
+.code-block > pre {
+  margin: 1rem 0;
+  background: #0f1115;                       /* dark block */
+  color: #e8e8e8;                            /* light text */
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  overflow-x: auto;                           /* horizontal scroll for long lines */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* When pre is inside .code-block, adjust paddings/corners once */
+.code-block > pre {
+  margin: 0;                                  /* handled by container */
+  padding: .75rem 1rem 1rem;
+  border-radius: 0 0 8px 8px;                 /* rounded only at bottom */
+  background: transparent;                    /* container holds bg */
+}
+
+/* The <code> inside block <pre> */
+pre code,
+.code-block > pre code {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  white-space: pre;                           /* preserve spaces/tabs/newlines */
+  word-break: normal;
+  tab-size: 2;
+  background: none;                           /* avoid double backgrounds */
+  padding: 0;                                 /* padding handled by <pre> */
+  max-width: 100%;
+}
+
+/* Optional: .code-block wrapper with red caption (if you use it) */
+.code-block {
+  margin: 1rem 0;
+  background: #0f1115;
+  border-radius: 8px;
+  box-shadow: var(--shadow-1);
+}
+.code-block > figcaption {
+  color: var(--orange-yellow-crayola);
+  font-weight: var(--fw-600);
+  font-size: var(--fs-6);
+  padding: .6rem .9rem .2rem;
+}
+
+/* === Blog body spans full column width === */
+article.blog .blog-banner-box,
+article.blog .timeline-text,
+article.blog pre,
+article.blog .blog-posts,
+article.blog .blog-posts-list,
+article.blog section {
+  width: 100%;
+  max-width: 100%;
+}
+
+.timeline-text ul {
+  list-style: disc inside;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.timeline-text li {
+  margin-bottom: 0.3rem;
+  color: var(--light-gray); /* match your post text color */
 }

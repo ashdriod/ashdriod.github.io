@@ -18,5 +18,35 @@
       "excerpt": "Latency, energy, and UX trade-offs from my cognitive load project—early results and plots.",
       "image": "./assets/images/blog-2.jpg",
       "alt": "Edge vs Server"
-    }
+    },
+    {
+        "slug": "jwt-explained",
+        "title": "Understanding JSON Web Tokens (JWT) with a Simple Example",
+        "date": "2025-09-21",
+        "displayDate": "Sep 21, 2025",
+        "category": "Security Notes",
+        "excerpt": "Breaking down JWTs: header, payload, signature — and a step-by-step example with curl.",
+        "image": "./assets/images/blog1.png",
+        "alt": "JWT Example"
+      },
+      {
+        "slug": "my-journey-dolby-dts",
+        "title": "My Journey into Dolby vs DTS: From DVDs to Dolby Atmos",
+        "date": "2025-09-21",
+        "displayDate": "Sep 21, 2025",
+        "category": "Audio Notes",
+        "excerpt": "A personal story of how I explored Dolby and DTS — from DVDs with Dolby Digital to Blu-ray’s TrueHD, and finally to a Dolby Atmos home theater, with Apple Music pushing me further into the Dolby world.",
+        "image": "./assets/images/blog2.png",
+        "alt": "Dolby vs DTS"
+      },{
+        "slug": "my-journey-mac-ram",
+        "title": "My Journey into Mac RAM: From Swappable Sticks to Compressed Memory",
+        "date": "2025-09-21",
+        "displayDate": "Sep 21, 2025",
+        "category": "Mac Notes",
+        "excerpt": "A personal story of how I started with a 2012 MacBook Pro and upgraded its RAM, and how today I use a MacBook Air M4 with 32 GB unified memory — learning how macOS manages RAM with compression, swap, and wired memory.",
+        "image": "./assets/images/blog3.png",
+        "alt": "Mac RAM Evolution"
+      }
+
   ]
