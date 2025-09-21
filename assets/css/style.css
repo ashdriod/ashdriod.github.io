@@ -2089,3 +2089,34 @@ article.blog section {
   margin-bottom: 0.3rem;
   color: var(--light-gray); /* match your post text color */
 }
+/* === BLOG PARAGRAPH NEWLINE + SPACING FIX (append at end) === */
+
+/* 1) Respect \n line breaks in blog/body paragraphs */
+.timeline-text,
+.blog-text {
+  white-space: pre-line;      /* convert \n to real line breaks */
+  word-break: break-word;     /* safer wrapping on narrow screens */
+  display: block;             /* avoid any inline-collapsing edge cases */
+}
+
+/* 2) Ensure vertical rhythm between consecutive paragraphs */
+.timeline-text + .timeline-text,
+.blog-text + .blog-text {
+  margin-top: 1rem;           /* add space when paragraphs follow each other */
+}
+
+/* 3) Safety: add spacing after headings in posts (short, predictable) */
+.h3 + .timeline-text,
+.h4 + .timeline-text,
+.h3 + .blog-text,
+.h4 + .blog-text {
+  margin-top: .6rem;
+}
+
+/* 4) Service “boxes” (the 4 cards) – consistent gaps on mobile too */
+.service-list .service-item + .service-item {
+  margin-top: 12px;
+}
+
+/* 5) Utility opt-in: add class="preline" anywhere you need \n respected */
+.preline { white-space: pre-line; }
